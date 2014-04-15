@@ -1,0 +1,20 @@
+<%= form_for @check do |c| %>
+
+<p>
+	<%=c.label :title %><br>
+	<%=c.text_field :title %>
+	<% if @check.errors.any? %>
+	<%= @check.errors.messages[:title][0] %>
+	<% end %>
+</p>
+
+<p>
+	<%=c.label :contents %><br>
+	<%=c.text_area :contents %>
+</p>
+
+<p>
+	<%= c.submit %>
+</p>
+
+<% end %>

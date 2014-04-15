@@ -1,0 +1,25 @@
+<h1><%= @project.title %></h1>
+
+<ul>
+<% @project.check_results.each do |cr| %>
+	<% c = @checks.find( cr.check_id ) %>
+	<% if c %>
+		<li>
+			<%= check_box_tag '','',cr.done,{'data-id' => cr.id, 'data-project_id' => cr.project_id} %>
+			<%= link_to c.title, check_path(c.id) %>
+			<%= form_for [@project, cr] , :html => {:style => 'display:inline' } do |f| %>
+			<%= f.text_area :comment %>
+			<%= f.submit %>
+			<% end %>
+		</li>
+	<% end %>
+<% end %>
+</ul>
+
+<script>
+$(function() {
+	$("input[type=checkbox]").click(function(){
+		$.post('/projects/'+$(this).data('project_id')+'/check_results/'+$(this).data('id')+'/toggle');
+	});
+});
+</script>

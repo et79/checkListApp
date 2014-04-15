@@ -1,0 +1,25 @@
+<h1>
+	Projects
+	<%= link_to image_tag('icon_plus_alt2.png',size: '25x25'), new_project_path %>
+</h1>
+
+<ul>
+	<!-- 
+		新規作成
+		このやり方でいいんだろうか・・・。
+	 -->
+	<li>
+		<%= form_for Project.new do |f| %>
+		<%= f.text_field :title %>
+		<%= f.submit %>
+		<% end %>
+	</li>
+
+	<% @projects.each do |project| %>
+	<li>
+		<%= link_to project.title, project_path(project.id) %>
+		<%= link_to image_tag('icon_pencil-edit.png',size: '15x15'), edit_project_path(project.id) %>
+		<%= link_to image_tag('icon_trash_alt.png',size: '15x15'), project_path(project.id), method: :delete, data: { confirm: "are you sure?" } %>
+	</li>
+	<% end %>
+</ul>

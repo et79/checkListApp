@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CheckListApp</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<head>
+		<h3>Self Check Lists</h3>
+		<%=link_to "projects", projects_path %>
+		<%=link_to "checks", checks_path %>
+	</head>
+
+	<%= yield %>
+
+	<footer>
+		<p><small>et79&copy;2014</small></p>
+	</footer>
+
+</body>
+</html>
