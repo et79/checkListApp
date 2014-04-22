@@ -4,14 +4,11 @@
 </h1>
 
 <ul>
-	<!-- 
-		新規作成
-		このやり方でいいんだろうか・・・。
-	 -->
+	<!-- 新規作成 -->
 	<li>
-		<%= form_for Project.new do |f| %>
-		<%= f.text_field :title %>
-		<%= f.submit %>
+		<%= form_for @projects.build do |f| %>
+			<%= f.text_field :title %>
+			<%= f.submit %>
 		<% end %>
 	</li>
 

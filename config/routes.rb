@@ -1,5 +1,6 @@
 CheckListApp::Application.routes.draw do
 
+  devise_for :users
   resources :checks
 
   resources :projects do
