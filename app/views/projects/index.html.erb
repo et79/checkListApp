@@ -1,6 +1,8 @@
 <h1>
 	Projects
-	<%= link_to image_tag('icon_plus_alt2.png',size: '25x25'), new_project_path %>
+	<% if user_signed_in? then %>
+		<%= link_to image_tag('icon_plus_alt2.png',size: '25x25'), new_project_path %>
+	<% end %>
 </h1>
 
 <ul>
@@ -15,8 +17,10 @@
 	<% @projects.each do |project| %>
 	<li>
 		<%= link_to project.title, project_path(project.id) %>
-		<%= link_to image_tag('icon_pencil-edit.png',size: '15x15'), edit_project_path(project.id) %>
-		<%= link_to image_tag('icon_trash_alt.png',size: '15x15'), project_path(project.id), method: :delete, data: { confirm: "are you sure?" } %>
+		<% if user_signed_in? then %>
+			<%= link_to image_tag('icon_pencil-edit.png',size: '15x15'), edit_project_path(project.id) %>
+			<%= link_to image_tag('icon_trash_alt.png',size: '15x15'), project_path(project.id), method: :delete, data: { confirm: "are you sure?" } %>
+		<% end %>
 	</li>
 	<% end %>
 </ul>

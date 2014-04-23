@@ -1,14 +1,18 @@
 <h1>
 	Checks
-	<%= link_to image_tag('icon_plus_alt2.png',size: '25x25'), new_check_path %>
+	<% if user_signed_in? then %>
+		<%= link_to image_tag('icon_plus_alt2.png',size: '25x25'), new_check_path %>
+	<% end %>
 </h1>
 
 <ul>
 	<% @checks.each do |check| %>
 	<li>
 		<%= link_to check.title, check_path(check.id) %>
-		<%= link_to image_tag('icon_pencil-edit.png',size: '15x15'), edit_check_path(check.id) %>
-		<%= link_to image_tag('icon_trash_alt.png',size: '15x15'), check_path(check.id), method: :delete, data: { confirm: "are you sure?" } %>
+		<% if user_signed_in? then %>
+			<%= link_to image_tag('icon_pencil-edit.png',size: '15x15'), edit_check_path(check.id) %>
+			<%= link_to image_tag('icon_trash_alt.png',size: '15x15'), check_path(check.id), method: :delete, data: { confirm: "are you sure?" } %>
+		<% end %>
 	</li>
 	<% end %>
 </ul>
