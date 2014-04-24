@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
 
 	def create
 		@project = Project.new(project_params)
+		@project.user_id = current_user.id
 		if @project.save
 			Check.all.each do |c|
 				@project.check_results.create(check_id: c.id)
