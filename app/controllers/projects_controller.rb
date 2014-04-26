@@ -33,6 +33,16 @@ class ProjectsController < ApplicationController
         end
     end
 
+    def toggle
+    	if params[:name] == "my_proj_only" then
+    		session[:my_proj_only] = !session[:my_proj_only]
+    	end
+
+    	# @projects = Project.all
+        # redirect_to :action => 'index'
+        render :js => "window.location = '/projects'"
+    end
+
     def destroy
 		@project = Project.find(params[:id])
         @project.destroy

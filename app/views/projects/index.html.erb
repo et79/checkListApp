@@ -3,25 +3,56 @@
 </h1>
 
 <ul>
-	<!-- 新規作成 -->
 	<% if user_signed_in? then %>
-	<li>
-		<%= form_for @projects.build do |f| %>
-			<%= f.text_field :title %>
-			<%= f.submit %>
-		<% end %>
-	</li>
-	<% end %>
+		<!-- ログインしている場合 -->
 
-	<% @projects.each do |project| %>
-		<% if project.user_id == current_user.id then %>
-			<li>
-				<%= link_to project.title, project_path(project.id) %>
-				<% if user_signed_in? then %>
+		<!-- 自分のプロジェクトのみ表示 -->
+		<p>
+		<%= check_box_tag '','',session[:my_proj_only], {'data-name' => 'my_proj_only'} %>
+		自分のプロジェクトのみ表示
+		</p>
+		<hr/>
+
+		<li>
+			<!-- 新規作成フォーム -->
+			<%= form_for @projects.build do |f| %>
+				<%= f.text_field :title %>
+				<%= f.submit %>
+			<% end %>
+		</li>
+
+		<% @projects.each do |project| %>
+			<!-- 自分のプロジェクトのみ表示 -->
+			<% if session[:my_proj_only] == true then %>
+				<% if project.user_id == current_user.id then %>
+					<li>
+						<%= link_to project.title, project_path(project.id) %>
+						<%= link_to image_tag('icon_pencil-edit.png',size: '15x15'), edit_project_path(project.id) %>
+						<%= link_to image_tag('icon_trash_alt.png',size: '15x15'), project_path(project.id), method: :delete, data: { confirm: "are you sure?" } %>
+					</li>
+				<% end %>
+			<% else %>
+				<li>
+					<%= link_to project.title, project_path(project.id) %>
 					<%= link_to image_tag('icon_pencil-edit.png',size: '15x15'), edit_project_path(project.id) %>
 					<%= link_to image_tag('icon_trash_alt.png',size: '15x15'), project_path(project.id), method: :delete, data: { confirm: "are you sure?" } %>
-				<% end %>
+				</li>
+			<% end %>
+		<% end %>
+	<% else %>
+		<!-- ログインしていない場合 -->
+		<% @projects.each do |project| %>
+			<li>
+				<%= link_to project.title, project_path(project.id) %>
 			</li>
 		<% end %>
 	<% end %>
 </ul>
+
+<script>
+$(function() {
+	$("input[type=checkbox]").click(function(){
+		$.post('/projects/toggle/'+$(this).data('name'));
+	});
+});
+</script>
