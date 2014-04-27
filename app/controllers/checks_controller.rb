@@ -1,6 +1,6 @@
 class ChecksController < ApplicationController
 
-	before_action :set_check, only: [:show, :edit, :update, :destory ]
+	before_action :set_check, only: [:show, :edit, :update, :destroy ]
 
 	def index
 		@checks = Check.all
@@ -15,6 +15,7 @@ class ChecksController < ApplicationController
 
 	def create
 		@check = Check.new(check_params)
+		@check.user_id = current_user.id
 		if @check.save
 			redirect_to checks_path
 		else
