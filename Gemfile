@@ -46,3 +46,6 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem "less-rails"
+gem "twitter-bootstrap-rails", github: "seyhunak/twitter-bootstrap-rails", branch: 'bootstrap3'
