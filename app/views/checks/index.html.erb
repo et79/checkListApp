@@ -1,19 +1,34 @@
 <h1>
 	Checks
 	<% if user_signed_in? then %>
-		<%= link_to image_tag('icon_plus_alt2.png',size: '25x25'), new_check_path %>
+		<%= link_to new_check_path, class: "btn btn-default btn-default" do %>
+			<i class="glyphicon glyphicon-plus"></i> Create
+		<% end %>  
 	<% end %>
 </h1>
 
-<ul>
-	<% @checks.each do |check| %>
-	<li>
-		<%= link_to check.title, check_path(check.id) %>
-		作成者:<%= check.user_id %>
-		<% if user_signed_in? then %>
-			<%= link_to image_tag('icon_pencil-edit.png',size: '15x15'), edit_check_path(check.id) %>
-			<%= link_to image_tag('icon_trash_alt.png',size: '15x15'), check_path(check.id), method: :delete, data: { confirm: "are you sure?" } %>
+<table class="table table-striped table-hover">
+	<tbody>
+		<% @checks.each do |check| %>
+		<tr>
+			<td>
+				<%= link_to check.title, check_path(check.id) %>
+			</td>
+
+			<!-- 編集／削除はログイン時のみ可 -->
+			<% if user_signed_in? then %>
+				<td align="right">
+					<div class="btn-group">
+						<%= link_to edit_check_path(check.id), class: "btn btn-default btn-sm" do %>
+							<i class="glyphicon glyphicon-pencil"></i>
+						<% end %>  
+						<%= link_to check_path(check.id), class: "btn btn-default btn-sm", method: :delete, data: { confirm: "are you sure?" } do %>
+							<i class="glyphicon glyphicon-remove"></i>
+						<% end %>
+					</div>
+				</td>
+			<% end %>
+		</tr>
 		<% end %>
-	</li>
-	<% end %>
-</ul>
+	</tbody>
+</table>

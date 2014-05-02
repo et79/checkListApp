@@ -1,25 +1,37 @@
 <h1><%= @project.title %></h1>
 
-<ul>
-<% @project.check_results.each do |cr| %>
-	<% c = @checks.find( cr.check_id ) %>
-	<% if c %>
-		<li>
-			<%= check_box_tag '','',cr.done,{'data-id' => cr.id, 'data-project_id' => cr.project_id} %>
-			<%= link_to c.title, check_path(c.id) %>
-			<%= form_for [@project, cr] , :html => {:style => 'display:inline' } do |f| %>
-			<%= f.text_area :comment %>
-			<%= f.submit %>
-			<% end %>
-		</li>
-	<% end %>
-<% end %>
-</ul>
+<%= form_for (@project), html: {class: "navbar-form" } do |p_form| %>
 
-<script>
-$(function() {
-	$("input[type=checkbox]").click(function(){
-		$.post('/projects/'+$(this).data('project_id')+'/check_results/'+$(this).data('id')+'/toggle');
-	});
-});
-</script>
+	<table class="table table-striped table-hover">
+		<tbody>
+			<% @project.check_results.each do |cr| %>
+				<%= p_form.fields_for :check_results, cr do |cr_fields| %>
+					<% c = @checks.find( cr.check_id ) %>
+					<% if c then %>
+						<tr>
+							<td width="60%">
+		  						<%= cr_fields.check_box :done, {}, true, cr.done %>
+								<%= link_to c.title, check_path(c.id) %>
+							</td>
+							<td align="right">
+								<%= cr_fields.text_area :comment, class: "form-control", placeholder: "コメント", size: "30x1" %>
+							</td>
+						</tr>
+						<%= cr_fields.hidden_field :check_id, value: cr.check_id %>
+					<% end %>
+				<% end %>
+			<% end %>
+		</tbody>
+	</table>
+
+	<!-- 更新ボタン -->
+	<!-- 
+	<%= p_form.submit 'from_show' %>
+ -->
+ 	<div align="right">
+		<%= button_tag(type: 'submit', name: 'from_show', class: "btn btn-default") do %>
+			<i class="glyphicon glyphicon-save"></i> Save
+		<% end %>
+	</div>
+<% end %>
+

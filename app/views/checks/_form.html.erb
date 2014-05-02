@@ -1,8 +1,8 @@
-<%= form_for @check do |c| %>
+<%= form_for @check, html: {class: "navbar-form" } do |c| %>
 
 <p>
 	<%=c.label :title %><br>
-	<%=c.text_field :title %>
+	<%=c.text_field :title, class: "form-control" %>
 	<% if @check.errors.any? %>
 	<%= @check.errors.messages[:title][0] %>
 	<% end %>
@@ -10,11 +10,13 @@
 
 <p>
 	<%=c.label :contents %><br>
-	<%=c.text_area :contents %>
+	<%=c.text_area :contents, class: "form-control" %>
 </p>
 
 <p>
-	<%= c.submit %>
+	<%= button_tag(type: 'submit', class: "btn btn-default") do %>
+		<i class="glyphicon glyphicon-plus"></i> Create
+	<% end %>
 </p>
 
 <% end %>
