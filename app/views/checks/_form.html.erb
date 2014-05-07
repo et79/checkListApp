@@ -13,6 +13,8 @@
 	<%=c.text_area :contents, class: "form-control" %>
 </p>
 
+	<input name="tags" id="tags" />
+
 <p>
 	<%= button_tag(type: 'submit', class: "btn btn-default") do %>
 		<i class="glyphicon glyphicon-plus"></i> Create
@@ -20,3 +22,7 @@
 </p>
 
 <% end %>
+
+<script>
+	$('#tags').tagsInput();
+</script>
