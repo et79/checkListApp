@@ -16,7 +16,6 @@ class ChecksController < ApplicationController
 	def create
 		@check = Check.new(check_params)
 		@check.user_id = current_user.id
-		@check.tag_list = "aa,bb"
 		if @check.save
 			redirect_to checks_path
 		else

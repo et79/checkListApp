@@ -13,7 +13,10 @@
 	<%=c.text_area :contents, class: "form-control" %>
 </p>
 
-	<input name="tags" id="tags" />
+<p>
+	<%= c.label :tag_list %><br>
+	<%= tag(:input, { id: "tokenfield", type: "text", name: "check[tag_list]", value: @check.tag_list.join(", "), class: "form-control" }) %>
+</p>
 
 <p>
 	<%= button_tag(type: 'submit', class: "btn btn-default") do %>
@@ -24,5 +27,5 @@
 <% end %>
 
 <script>
-	$('#tags').tagsInput();
+	$('#tokenfield').tokenfield()
 </script>

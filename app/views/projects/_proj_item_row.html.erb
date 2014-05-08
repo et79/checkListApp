@@ -2,6 +2,15 @@
 	<td>
 		<%= link_to project.title, project_path(project.id) %>
 	</td>
+	
+	<td align="right">
+		<% project.tags.each do |tag| %>
+			<span class="label label-info">
+				<%= tag.name %>
+			</span>
+			&nbsp
+		<% end %>
+	</td>
 
 	<!-- 編集／削除はログイン時のみ可 -->
 	<% if user_signed_in? then %>

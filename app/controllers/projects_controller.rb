@@ -4,8 +4,15 @@ class ProjectsController < ApplicationController
 	end
 
 	def show
+		logger.debug("パラメータの値：")
+		logger.debug(params[:id])
+
 		@project = Project.find(params[:id])
-		@checks = Check.all
+		if @project.tag_list.count > 0 then
+			@checks = Check.tagged_with( @project.tag_list.join(",") )
+		else
+			@checks = Check.all
+		end
 	end
 
 	def create
@@ -36,6 +43,11 @@ class ProjectsController < ApplicationController
 			@project.update_attributes(project_params)
 
 			redirect_to projects_path
+
+		elsif params[:add_tags]
+			# タグの追加
+			@project.update(project_params_tags)
+			redirect_to project_path, :id => params[:id]
 		else
 			# タイトルの更新
 	        if @project.update(project_params_title)
@@ -73,6 +85,10 @@ class ProjectsController < ApplicationController
 		def project_params
 			params[:project].permit(
 				:check_results_attributes => [:done, :comment, :check_id, :id])
+		end
+
+		def project_params_tags
+			params[:project].permit(:tag_list)
 		end
 
 		# プロジェクトのタイトル更新
