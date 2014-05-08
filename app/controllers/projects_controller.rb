@@ -4,9 +4,6 @@ class ProjectsController < ApplicationController
 	end
 
 	def show
-		logger.debug("パラメータの値：")
-		logger.debug(params[:id])
-
 		@project = Project.find(params[:id])
 		if @project.tag_list.count > 0 then
 			@checks = Check.tagged_with( @project.tag_list.join(",") )
