@@ -9,14 +9,14 @@ class CheckResultsController < ApplicationController
 
     # end
 
-    def toggle
-        # render nothing: true
-    	@check_result = CheckResult.find(params[:id])
-    	@check_result.done = !@check_result.done
-    	@check_result.save
+    # def toggle
+    #     # render nothing: true
+    # 	@check_result = CheckResult.find(params[:id])
+    # 	@check_result.done = !@check_result.done
+    # 	@check_result.save
 
-        redirect_to(:back)
-    end
+    #     redirect_to(:back)
+    # end
 
     private
 

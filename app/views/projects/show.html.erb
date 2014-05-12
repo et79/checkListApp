@@ -2,53 +2,79 @@
 
 
 <!-- タグの設定 -->
-<div class="panel panel-default">
-	<div class="panel-heading">
-    	<h3 class="panel-title">タグによる検索<br></h3>
-  	</div>
-	<div class="panel-body">
-		<%= form_for (@project), html: {class: "navbar-form" } do |p_form| %>
-			下のリストからタグを選んで入力してください。空にすると、全タグが対象となります。<br>
-			補完が効くと良いのですが、うまく動いていないので・・・、すみません。<br>
+<div class="well">
 
-			<div class="input-group">
-				<%= tag(:input, { id: "tokenfield", type: "text", name: "project[tag_list]", value: @project.tag_list.join(", "), class: "form-control" }) %>
-				<span class="input-group-btn">
-					<button type="submit" class="btn btn-default" name="add_tags">
-						<i class="glyphicon glyphicon-plus"></i> 更新
-					</button>
-				</span>
+	<%= form_for @project, html: {class: "form-horizontal" } do |p| %>
+
+	<fieldset>
+		<!-- <legend><%= t('labels.tags_edit') %></legend> -->
+		<%= t('labels.tags_edit_description') %>
+
+		<!-- タグ -->
+		<div class="form-group">
+			<%=p.label :tags, class: "col-lg-2 control-label" %>
+			<div class="col-lg-10">
+				<%= tag(:input, { id: "tokenfield", type: "text", name: "project[tag_list]", value: @project.tag_list.join(", "), class: "form-control", placeholder: t('activerecord.attributes.project.tags_description') }) %>
+				<%= Check.all_tags.join(", ") %>
 			</div>
+		</div>
 
-			<br>
+		<!-- 実行ボタン -->
+		<div class="form-group" align="right">
+			<div class="col-lg-10 col-lg-offset-2">
+				<%= button_tag(type: 'submit', class: "btn btn-primary", name: "add_tags") do %>
+					<i class="glyphicon glyphicon-refresh"></i> <%= t('labels.update')%>
+				<% end %>
+			</div>
+		</div>
 
-			<%= Check.all_tags.join(", ") %>
-		<% end %>
-	</div>
+	</fieldset>
+
+
+	<% end %>
+
 </div>
 
+<!-- チェック結果の表示 -->
+<!-- |チェック項目|タグ|コメント| -->
 <%= form_for (@project), html: {class: "navbar-form" } do |p_form| %>
 
-	<table class="table table-striped table-hover">
+	<table class="table table-striped table-hover table-bordered">
+	<thead>
+		<tr>
+			<th></th>
+			<th><%= t('activerecord.attributes.project.title') %></th>
+			<th><%= t('activerecord.attributes.project.tags') %></th>
+			<th width="300"><%= t('activerecord.attributes.project.comment') %></th>
+		</tr>
+	</thead>
 		<tbody>
 			<% @project.check_results.each do |cr| %>
 				<%= p_form.fields_for :check_results, cr do |cr_fields| %>
 					<% @checks.where( id: cr.check_id ).each do |c| %>
-						<tr>
+						<tr >
+							<!-- チェックボックス -->
 							<td>
-		  						<%= cr_fields.check_box :done, {}, true, cr.done %>
+								<%= cr_fields.hidden_field :done, value: false %>
+		  						<%= cr_fields.check_box :done, {checked: cr.done}, true, false %>
+							</td>
+
+							<!-- チェック項目名 -->
+							<td>
 								<%= link_to c.title, check_path(c.id) %>
 							</td>
 
+							<!-- タグ -->
 							<td align="right">
 								<% c.tags.each do |tag| %>
-									<span class="label label-info">
+									<span class="label label-default">
 										<%= tag.name %>
 									</span>
 									&nbsp
 								<% end %>
 							</td>
 
+							<!-- コメント -->
 							<td align="right">
 								<%= cr_fields.text_area :comment, class: "form-control", placeholder: "コメント", size: "30x1" %>
 							</td>
@@ -66,7 +92,7 @@
  -->
  	<div align="right">
 		<%= button_tag(type: 'submit', name: 'from_show', class: "btn btn-default") do %>
-			<i class="glyphicon glyphicon-save"></i> Save
+			<i class="glyphicon glyphicon-save"></i> <%= t('labels.save') %>
 		<% end %>
 	</div>
 <% end %>

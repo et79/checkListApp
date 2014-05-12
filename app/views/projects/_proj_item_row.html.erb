@@ -1,25 +1,33 @@
+<!-- チェックリスト一行分を表示 -->
+
 <tr>
+	<!-- チェックリスト名 -->
 	<td>
 		<%= link_to project.title, project_path(project.id) %>
 	</td>
 	
-	<td align="right">
+	<!-- タグ -->
+	<td>
 		<% project.tags.each do |tag| %>
-			<span class="label label-info">
+			<span class="label label-default">
 				<%= tag.name %>
 			</span>
 			&nbsp
 		<% end %>
 	</td>
 
+	<!-- 操作 -->
 	<!-- 編集／削除はログイン時のみ可 -->
 	<% if user_signed_in? then %>
-		<td align="right">
+		<td>
 			<div class="btn-group">
+				<!-- 編集ボタン -->
 				<%= link_to edit_project_path(project.id), class: "btn btn-default btn-sm" do %>
 					<i class="glyphicon glyphicon-pencil"></i>
 				<% end %>  
-				<%= link_to project_path(project.id), class: "btn btn-default btn-sm", method: :delete, data: { confirm: "are you sure?" } do %>
+
+				<!-- 削除ボタン -->
+				<%= link_to project_path(project.id), class: "btn btn-default btn-sm", method: :delete, data: { confirm: t('labels.del_confirm') } do %>
 					<i class="glyphicon glyphicon-remove"></i>
 				<% end %>
 			</div>

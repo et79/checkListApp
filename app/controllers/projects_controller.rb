@@ -12,8 +12,12 @@ class ProjectsController < ApplicationController
 		end
 	end
 
+	def new 
+		@project = Project.new
+	end
+
 	def create
-		@project = Project.new(project_params_title)
+		@project = Project.new(project_params)
 		@project.user_id = current_user.id
 	
 		# チェック項目を追加
@@ -36,18 +40,18 @@ class ProjectsController < ApplicationController
 		if params[:from_show]
 			# チェック項目の更新
 
-			@project.update(project_params)
-			@project.update_attributes(project_params)
+			@project.update(project_results_params)
+			@project.update_attributes(project_results_params)
 
 			redirect_to projects_path
 
 		elsif params[:add_tags]
 			# タグの追加
-			@project.update(project_params_tags)
+			@project.update(project_tags_params)
 			redirect_to project_path, :id => params[:id]
 		else
 			# タイトルの更新
-	        if @project.update(project_params_title)
+	        if @project.update(project_params)
 	            redirect_to projects_path
 	        else
 	            render 'edit'
@@ -79,18 +83,18 @@ class ProjectsController < ApplicationController
 
 	private
 		# プロジェクトのチェック状態更新
-		def project_params
+		def project_results_params
 			params[:project].permit(
 				:check_results_attributes => [:done, :comment, :check_id, :id])
 		end
 
-		def project_params_tags
+		def project_tags_params
 			params[:project].permit(:tag_list)
 		end
 
 		# プロジェクトのタイトル更新
-		def project_params_title
-			params[:project].permit(:title)
+		def project_params
+			params[:project].permit(:title, :tag_list)
 		end
 
 end

@@ -1,16 +1,14 @@
 CheckListApp::Application.routes.draw do
 
+  get "help/about"
   devise_for :users
   resources :checks
-
   resources :projects do
     resources :check_results, only: [:create, :update, :destroy]
   end
 
-  post 'projects/:project_id/check_results/:id/toggle' => 'check_results#toggle'
-
+  #post 'projects/:project_id/check_results/:id/toggle' => 'check_results#toggle'
   post 'projects/toggle/:name' => 'projects#toggle'
-
   root 'projects#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,23 +1,32 @@
 <h1>
-	Checks
+	<%= t('checks') %>
 	<% if user_signed_in? then %>
 		<%= link_to new_check_path, class: "btn btn-default btn-default" do %>
-			<i class="glyphicon glyphicon-plus"></i> Create
+			<i class="glyphicon glyphicon-plus"></i>
 		<% end %>  
 	<% end %>
 </h1>
 
-<table class="table table-striped table-hover">
+<table class="table table-striped table-hover table-bordered">
+	<thead>
+		<tr>
+			<th><%= t('activerecord.attributes.check.title') %></th>
+			<th><%= t('activerecord.attributes.check.tags') %></th>
+			<% if user_signed_in? then %>
+				<th width="90"><%= t('labels.operation') %></th>
+			<% end %>
+		</tr>
+	</thead>	
 	<tbody>
-		<% @checks.each do |check| %>
+		<% @checks.order("id desc").each do |check| %>
 		<tr>
 			<td>
 				<%= link_to check.title, check_path(check.id) %>
 			</td>
 			
-			<td align="right">
+			<td>
 				<% check.tags.each do |tag| %>
-					<span class="label label-info">
+					<span class="label label-default">
 						<%= tag.name %>
 					</span>
 					&nbsp
@@ -26,12 +35,12 @@
 
 			<!-- 編集／削除はログイン時のみ可 -->
 			<% if user_signed_in? then %>
-				<td align="right">
+				<td>
 					<div class="btn-group">
 						<%= link_to edit_check_path(check.id), class: "btn btn-default btn-sm" do %>
 							<i class="glyphicon glyphicon-pencil"></i>
 						<% end %>  
-						<%= link_to check_path(check.id), class: "btn btn-default btn-sm", method: :delete, data: { confirm: "are you sure?" } do %>
+						<%= link_to check_path(check.id), class: "btn btn-default btn-sm", method: :delete, data: { confirm: t('labels.del_confirm') } do %>
 							<i class="glyphicon glyphicon-remove"></i>
 						<% end %>
 					</div>

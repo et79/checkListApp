@@ -192,3 +192,45 @@ ja:
       long: ! '%Y年%m月%d日(%a) %H時%M分%S秒 %z'
       short: ! '%y/%m/%d %H:%M'
     pm: 午後
+
+# 追記分
+
+  # 大項目
+  page_title: チェックリスト
+  projects:   チェックリスト
+  checks:     チェック項目
+  help_about: ヘルプ
+
+  # ラベル
+  labels:
+    create_project: チェックリストの作成
+    operation:      操作
+
+    my_proj_only:   自分のプロジェクトのみ表示
+    make:           作成
+    edit:           編集    
+    save:           保存
+    update:         更新
+    contents:       内容    
+    tags_edit:      タグの編集
+    tags_edit_description:  必要に応じて、タグの見直しを行ってください。タグが空の場合、全チェック項目がチェック対象となります。
+
+    del_confirm:  本当に削除しますか？
+
+
+  activerecord:
+    attributes:
+      check:
+        title:  チェックタイトル
+        title_description: チェックのタイトルを入力します。例：ハンカチは持ちましたか？
+        contents: チェックの詳細
+        contents_description: チェックの詳細、補足なんかを入力します。例：右のポケットにハンカチが入っている事を確認する
+        tags: タグ
+        tags_description: タグを設定します。付けるタグが下にある場合、文字列は揃えてください。
+
+      project:
+        title:  チェックリスト名
+        title_description:  チェックリストのタイトルを入力します。例：幼稚園の準備、会社の準備
+        tags:   タグ
+        tags_description: 下のリストからタグを選んで入力してください。
+        comment: コメント
