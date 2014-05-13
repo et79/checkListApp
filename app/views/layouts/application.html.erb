@@ -39,18 +39,18 @@
   <body>
 
     <!-- ナビゲーションバー -->
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href=<%= projects_path %>>CheckList</a>
+        <a class="navbar-brand" href="#"><i class="glyphicon glyphicon-check"></i> CheckList</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to t('projects'), projects_path  %></li>
-            <li><%= link_to t('checks'), checks_path  %></li>
+            <li><%= link_to projects_path do %><i class="glyphicon glyphicon-th-list"></i> <%= t('projects') %><% end %></li>
+            <li><%= link_to checks_path do %><i class="glyphicon glyphicon-ok"></i> <%= t('checks') %><% end %></li>
           </ul>
 
           <!-- ログイン関連 -->
@@ -59,7 +59,7 @@
 
               <!-- ログイン中 -->
               <% if user_signed_in? %>
-                <a href= <%= edit_user_registration_path %> class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %> <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> <%= current_user.email %> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><%= link_to "Edit", edit_user_registration_path %></li>
                   <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
@@ -67,7 +67,7 @@
 
               <!-- ログインしていない場合 -->
               <% else %>
-                <a href= <%= new_user_session_path %> class="dropdown-toggle" data-toggle="dropdown">Login <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> Login <b class="caret"></b></a>
                  <ul class="dropdown-menu">
                    <li><%= link_to "Login", new_user_session_path %></li>
                    <li><%= link_to "Sign up", new_user_registration_path %></li>
@@ -75,7 +75,7 @@
               <% end %>
             </li>
             <!-- ヘルプ -->
-            <li><%= link_to t('help_about'), help_about_path %></li>
+            <li><%= link_to help_about_path do %><i class="glyphicon glyphicon-book"></i> <%= t('help_about') %><% end %></li>
           </ul>
         </div>
       </div>

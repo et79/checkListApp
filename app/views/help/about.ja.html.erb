@@ -1,0 +1,218 @@
+
+<h1>何が出来ますか？</h1>
+
+<div class="well">
+	<div class="row">
+	  	<div class="col-md-7">
+	  		<%= image_tag 'help/checklist_image.png', class: "img-responsive img-thumbnail" %>
+	  	</div>
+		<div class="col-md-5">
+			<p>
+				共有しているチェック項目から、チェックリストを作ることができます。
+			</p>
+			<p>
+				チェック項目にはタグを付けることができ、特定のタグに絞ったチェックリストが作成できます。
+			</p>
+			<p>
+				チェックリストはユーザ毎に作ることができます。<br>※ログインが必要です。
+			</p>
+	  	</div>
+	</div>
+</div>
+
+<br>
+
+<h1>どうやって使いますか？</h1>
+<div class="well">
+
+	<div class="panel panel-default">
+	  <div class="panel-body">
+		<h3>ログインします</h3><hr>
+
+		<div class="row">
+			<div class="col-md-6">
+				<p>
+					はじめて使う場合は <code>Sign Up</code> から、ユーザ登録をしてログインします。既にユーザ登録している場合は <code>Login</code> からログインします。
+				</p>
+				<p>
+					※ログインしていない場合は、チェック項目やチェックリストを作成することはできません。
+				</p>
+		  	</div>
+		  	<div class="col-md-6">
+		  		<%= image_tag 'help/login.png', class: "img-responsive img-thumbnail" %>
+		  	</div>
+		</div>
+	  </div>
+	</div>
+
+	<div class="panel panel-default">
+	  <div class="panel-body">
+
+		<h3>チェック項目を追加します</h3><hr>
+
+		<div class="row">
+		  	<div class="col-md-6">
+				<p><code><i class="glyphicon glyphicon-ok"></i>チェック項目</code> をクリックし、<i class="glyphicon glyphicon-plus"></i> ボタンを押して、チェック項目の作成を開始します。</p>
+		  	</div>
+			<div class="col-md-6">
+				<%= image_tag 'help/check_add_button.png', class: "img-responsive img-thumbnail" %>
+		  	</div>
+		</div>
+
+		<hr>
+
+		<div class="row">
+		  	<div class="col-md-6">
+				<p>入力フォームの各項目にチェックの内容を入力してください。<br>※各項目は、後から編集できます。</p>
+
+				<dl>
+				  <dt>チェックタイトル</dt>
+				  <dd>チェックリストに表示される文字列になります</dd>
+
+				  <dt>チェックの詳細</dt>
+				  <dd>詳細事項などを記述します</dd>
+
+				  <dt>タグ</dt>
+				  <dd>分類をタグ付けします。チェックリストを作成する際の、タグによるチェック項目のフィルタリングに使用します</dd>
+
+				  <dt>保存</dt>
+				  <dd>保存を実行します</dd>
+				</dl>
+		  	</div>
+			<div class="col-md-6">
+				<%= image_tag 'help/check_form.png', class: "img-responsive img-thumbnail" %>
+		  	</div>
+		</div>
+
+		<hr>
+
+		<div class="row">
+		  	<div class="col-md-6">
+				<p>チェック項目の編集、削除はこのボタンからおこないます。</p>
+		  	</div>
+			<div class="col-md-6">
+				<%= image_tag 'help/check_list.png', class: "img-responsive img-thumbnail" %>
+		  	</div>
+		</div>
+	  </div>
+	</div>
+
+	<div class="panel panel-default">
+	 	<div class="panel-body">
+
+			<h3>チェックリストを作成します</h3><hr>
+
+			<div class="row">
+			  	<div class="col-md-6">
+			  		<p><code><i class="glyphicon glyphicon-th-list"></i>チェックリスト</code> をクリックし、<i class="glyphicon glyphicon-plus"></i> ボタンを押して、チェックリストの作成を開始します。</p>
+			  	</div>
+				<div class="col-md-6">
+					<%= image_tag 'help/check_list.png', class: "img-responsive img-thumbnail" %>
+			  	</div>
+			</div>
+
+			<hr>
+
+			<div class="row">
+			  	<div class="col-md-6">
+			  		<p>入力フォームの名前とチェックしたいタグを入力してください。<br>※各項目は、後から編集できます。</p>
+
+					<dl>
+					  <dt>チェックリスト名</dt>
+					  <dd>チェックリストの名前を入力します</dd>
+					  <dt>タグ</dt>
+					  <dd>チェックしたいカテゴリのタグを入力します。<span class="text-danger">存在するタグ名を入力する必要があります。</span>タグを空にした場合、すべてのチェック項目がチェックの対象となります。</dd>
+					  <dt>保存</dt>
+					  <dd>保存を実行します</dd>
+					</dl>
+			  	</div>
+				<div class="col-md-6">
+					<p>イメージ</p>
+			  	</div>
+			</div>
+
+			<hr>
+
+			<div class="row">
+			  	<div class="col-md-6">
+					<p>作成を実行すると、指定したタグを持つチェック項目を羅列したチェックリストが完成します。</p>
+			  	</div>
+				<div class="col-md-6">
+					<p>イメージ</p>
+			  	</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-body">
+
+			<h3>自分のチェックリストを使ってチェックします</h3><hr>
+			<div class="row">
+			  	<div class="col-md-6">
+					<p>チェックリストから実行したい項目を選択し、チェックを実行します。</p>
+					<p>チェックが終わったら、左側のチェックボックスをONにしてください。 </p>
+					<p>必要に応じてコメントを残してください。</p>
+					<p>編集したら、<i class="glyphicon glyphicon-save"></i>保存ボタンを押して終了です。</p>
+					<br>
+					<p>忘れ物防止にお役に立てれば、幸いです。</p>
+			  	</div>
+				<div class="col-md-6">
+					<p>イメージ</p>
+			  	</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<br>
+
+<h1 id="セットアップ方法">セットアップ方法</h1>
+
+<div class="well">
+
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<h3>環境</h3><hr>
+			<p>本アプリは Ruby on Rails で作成しています。</p>
+			<dl>
+				<dt>Ruby</dt>
+				<dd>2.1.0dev</dd>
+				<dt>Rails</dt>
+				<dd>4.0.2</dd>
+			</dl>
+		</div>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<h3>セットアップ</h3><hr>
+
+			<p>ソースコードを、GitHubからダウンロードします。</p>
+
+			<pre><code>$ git clone https://github.com/et79/checkListApp.git</code></pre>
+
+			<p>アプリを起動します。</p>
+
+			<pre><code>$ cd checkListApp
+rails s</code></pre>
+
+			<p>アプリにアクセスします。</p>
+
+			<pre><code>http://localhost:3000</code></pre>
+		</div>
+	</div>
+</div>
+
+<br>
+
+<h1>その他、開発記など</h1>
+
+<div class="well">
+	<p>ソースコードは <%= link_to "GitHub", "https://github.com/et79/checkListApp" %> に公開しています。</p>
+	<p>デモ用の環境を <%= link_to "Heroku", "http://still-dusk-2716.herokuapp.com/" %> に公開しています。</p>
+	<p>開発記を <%= link_to "ブログ", "http://smallstepeveryday.blogspot.jp/p/checklistapp.html" %> に公開しています。</p>
+	<br>
+	<p>まだ、荒削りですが、少しずつ整備していきますので、よろしくお願いいたします。</p>
+</div>
