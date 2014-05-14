@@ -1,14 +1,13 @@
 == README
 
 チェックリストを作成するWebアプリケーションです。
-
 HerokuにてデモWebを公開中です。
 
-<http://checklist--app.herokuapp.com>
+http://checklist--app.herokuapp.com
 
 使い方等については、'つかい方'のページを参考にして下さい。
 
-=== 起動方法
+== 起動方法
 
 ソースコードを、GitHubからダウンロードします。
 
@@ -21,5 +20,5 @@ HerokuにてデモWebを公開中です。
     $ bundle exec rake db:migrate
     $ rails s
 
-アプリにアクセスします。
-'http://localhost:3000'
+http://localhost:3000 にアクセスします。
+
