@@ -1,28 +1,25 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+チェックリストを作成するWebアプリケーションです。
 
-Things you may want to cover:
+HerokuにてデモWebを公開中です。
 
-* Ruby version
+<http://checklist--app.herokuapp.com>
 
-* System dependencies
+使い方等については、'つかい方'のページを参考にして下さい。
 
-* Configuration
+=== 起動方法
 
-* Database creation
+ソースコードを、GitHubからダウンロードします。
 
-* Database initialization
+    $ git clone https://github.com/et79/checkListApp.git
 
-* How to run the test suite
+アプリを起動します。
 
-* Services (job queues, cache servers, search engines, etc.)
+    $ cd checkListApp
+    $ bundle install --without production
+    $ bundle exec rake db:migrate
+    $ rails s
 
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+アプリにアクセスします。
+'http://localhost:3000'
